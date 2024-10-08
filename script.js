@@ -16,13 +16,23 @@ function convertToRoman(num) {
         ['XC', 90], ['XL', 40],    
         ['IX', 9], ['IV', 4]       
     ];
-	romanPairs.forEach(([symbol, value]) => {
+
+    
+    while (num >= 1000) {
+        romanNumeral += 'M';
+        num -= 1000;
+    }
+
+
+    romanPairs.forEach(([symbol, value]) => {
         while (num >= value) {
             romanNumeral += symbol;
             num -= value;
         }
     });
-for (let i = 0; i <= 6; i++) {
+
+    
+    for (let i = 0; i <= 6; i++) {
         while (num >= obj[i][1]) {
             romanNumeral += obj[i][0];
             num -= obj[i][1];
@@ -32,14 +42,8 @@ for (let i = 0; i <= 6; i++) {
     return romanNumeral;
 }
 
-
-console.log(convertToRoman(36));
-
-// You can test your code by running the above function and printing it to console by pressing the run button at the top. To run it with input 36, uncomment the following line
-
-// console.log(convertToRoman(36));
-
-
+// Test the function
+console.log(convertToRoman(98765));
 
 
 // do not edit below this line

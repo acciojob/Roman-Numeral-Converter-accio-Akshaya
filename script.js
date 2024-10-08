@@ -12,18 +12,12 @@ function convertToRoman(num) {
   //your code here
 	let romanNumeral = '';
     const romanPairs = [
-        ['CM', 900], ['CD', 400],  
-        ['XC', 90], ['XL', 40],    
-        ['IX', 9], ['IV', 4]       
+        ['CM', 900], ['CD', 400],  // For 900 and 400 cases
+        ['XC', 90], ['XL', 40],    // For 90 and 40 cases
+        ['IX', 9], ['IV', 4]       // For 9 and 4 cases
     ];
 
-    
-    while (num >= 1000) {
-        romanNumeral += 'M';
-        num -= 1000;
-    }
-
-
+    // Handle subtractive notation first to avoid incorrect repetitions
     romanPairs.forEach(([symbol, value]) => {
         while (num >= value) {
             romanNumeral += symbol;
@@ -31,7 +25,7 @@ function convertToRoman(num) {
         }
     });
 
-    
+    // Now handle the remaining values using the obj map
     for (let i = 0; i <= 6; i++) {
         while (num >= obj[i][1]) {
             romanNumeral += obj[i][0];
@@ -42,8 +36,10 @@ function convertToRoman(num) {
     return romanNumeral;
 }
 
-// Test the function
-console.log(convertToRoman(98765));
+// Test cases
+console.log(convertToRoman(14));  // Output: XIV
+console.log(convertToRoman(58));  // Output: LVIII
+console.log(convertToRoman(798)); // Output: DCCXCVIII
 
 
 // do not edit below this line

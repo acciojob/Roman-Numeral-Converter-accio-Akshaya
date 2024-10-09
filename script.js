@@ -1,44 +1,41 @@
 function convertToRoman(num) {
-  	const obj = {
-      0:['M',1000], 
-      1:['D', 500], 
-      2:['C', 100], 
-      3:['L', 50], 
-      4:['X', 10], 
-      5:['V', 5], 
-      6:['I', 1]
-    };
-
-  //your code here
-	let romanNumeral = '';
-    const romanPairs = [
-        ['CM', 900], ['CD', 400],  // 900 and 400
-        ['XC', 90], ['XL', 40],    // 90 and 40
-        ['IX', 9], ['IV', 4]       // 9 and 4
+    // Array of Roman numerals and their corresponding values
+    const romanSymbols = [
+        ['M', 1000],
+        ['CM', 900],
+        ['D', 500],
+        ['CD', 400],
+        ['C', 100],
+        ['XC', 90],
+        ['L', 50],
+        ['XL', 40],
+        ['X', 10],
+        ['IX', 9],
+        ['V', 5],
+        ['IV', 4],
+        ['I', 1]
     ];
 
-    // Handle special subtractive cases first
-    romanPairs.forEach(([symbol, value]) => {
-        while (num >= value) {
-            romanNumeral += symbol;
-            num -= value;
-        }
-    });
+    // Result string for the Roman numeral
+    let result = '';
 
-    // Handle remaining values using the provided symbols
-    for (let i = 0; i <= 6; i++) {
-        while (num >= obj[i][1]) {
-            romanNumeral += obj[i][0];
-            num -= obj[i][1];
+    // Loop through each symbol
+    for (let i = 0; i < romanSymbols.length; i++) {
+        const [symbol, value] = romanSymbols[i];
+        
+        // Append the symbol while the value can be subtracted from num
+        while (num >= value) {
+            result += symbol;
+            num -= value;
         }
     }
 
-    return romanNumeral;
+    return result;
 }
 
-// Test cases
-console.log(convertToRoman(14));  // Output: XIV
-console.log(convertToRoman(798)); // Output: DCCXCVIII
+// Example test cases
+console.log(convertToRoman(14)); // XIV
+console.log(convertToRoman(798)); // DCCXCVIII
 
 
 // do not edit below this line
